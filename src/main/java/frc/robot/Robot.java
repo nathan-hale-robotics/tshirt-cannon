@@ -1,4 +1,3 @@
-
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -8,8 +7,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
-  private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  private String m_autoSelected;
 
   @Override
   public void robotInit() {
@@ -38,17 +37,7 @@ public class Robot extends TimedRobot {
     }
   }
 
-  /**
-   * This function is called periodically during operator control.
-   */
   @Override
   public void teleopPeriodic() {
-  }
-
-  /**
-   * This function is called periodically during test mode.
-   */
-  @Override
-  public void testPeriodic() {
   }
 }
