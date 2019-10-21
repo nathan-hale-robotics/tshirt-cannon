@@ -11,12 +11,10 @@ public class Robot extends TimedRobot {
   private DifferentialDrive drive;
   /*interface for speed of right
    *motor.*/
-  private Spark rMotor =
-    new Spark(1);
+  private Spark rMotor;
   /*interface for speed of left
    *motor.*/
-  private Spark lMotor =
-    new Spark(0);
+  private Spark lMotor;
   //TODO how is the x,y,z coordinate plane mapped to the joystick?
   private Joystick driveStick;
 
@@ -27,6 +25,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    //Assigning motors to roborio
+    lMotor = new Spark(0);
+    rMotor = new Spark(1);
   	/*TODO I am assuming the spark 
   	 * object lets you interface 
   	 * with a pwm signal that
