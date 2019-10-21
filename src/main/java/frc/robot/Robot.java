@@ -9,7 +9,15 @@ public class Robot extends TimedRobot {
 	/*drive represents a tank
 	 *drivetrain. */
   private DifferentialDrive drive;
- 	//TODO how is the x,y,z coordinate plane mapped to the joystick?
+  /*interface for speed of right
+   *motor.*/
+  private Spark rMotor =
+    new Spark(1);
+  /*interface for speed of left
+   *motor.*/
+  private Spark lMotor =
+    new Spark(0);
+  //TODO how is the x,y,z coordinate plane mapped to the joystick?
   private Joystick driveStick;
 
   /**
@@ -27,10 +35,8 @@ public class Robot extends TimedRobot {
   	 */
     drive = 
     	new DifferentialDrive(
-    		//left motor
-    		new Spark(0),
-    		//right motor 
-    		new Spark(1));
+    		lMotor,
+    		rMotor;
     //TODO is port number usb port number?
     driveStick = 
     new Joystick(0);
