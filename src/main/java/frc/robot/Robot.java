@@ -37,7 +37,7 @@ public class Robot extends TimedRobot {
     drive = 
     	new DifferentialDrive(
     		lMotor,
-    		rMotor;
+    		rMotor);
     //TODO is port number usb port number?
     driveStick = 
     new Joystick(0);
