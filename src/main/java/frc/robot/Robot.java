@@ -1,14 +1,13 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+//import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 public class Robot extends TimedRobot {
-	/*drive represents a tank
-	 *drivetrain. */
-  private DifferentialDrive drive;
   /*interface for speed of right
    *motor.*/
   private Spark rMotor;
@@ -17,6 +16,10 @@ public class Robot extends TimedRobot {
   private Spark lMotor;
   //TODO how is the x,y,z coordinate plane mapped to the joystick?
   private Joystick driveStick;
+  //general timer/stop-watch
+  private Timer timer;
+  //cannon that fires t-shirts
+  private Cannon shirtCannon;
 
   /**
    * robotInit (robot initialization)
@@ -25,22 +28,17 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    //Assigning motors to roborio
-    lMotor = new Spark(0);
-    rMotor = new Spark(1);
-  	/*TODO I am assuming the spark 
-  	 * object lets you interface 
-  	 * with a pwm signal that
-  	 * indirectly controls the
-  	 * motor connected to it.
-  	 */
-    drive = 
-    	new DifferentialDrive(
-    		lMotor,
-    		rMotor);
-    //TODO is port number usb port number?
+    //Assigning motors to PWM pins
+    lMotor = new Spark(1);
+    rMotor = new Spark(2);
+    /*assigning driveStick to first
+     * joystick plugged in*/
     driveStick = 
     new Joystick(0);
+    
+    shirtCannon =
+     new Cannon(new Spark(0),
+     	new DigitalOutput(1));
   }
 
 	/**
@@ -51,11 +49,6 @@ public class Robot extends TimedRobot {
 	 */
   @Override
   public void teleopPeriodic() {
-  	//set drivetrain's speeds
-    drive.arcadeDrive(
-    	//forward speed
-    	driveStick.getX(), 
-    	//clockwise rotation speed
-    	driveStick.getY());
+  	
   }
 }
