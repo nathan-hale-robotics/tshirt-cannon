@@ -95,11 +95,8 @@ public class Cannon {
 		
 		//update valve state
 		//TODO is false closed and true open?
-		if(valveTime >
-			valveTimer.get())
-			valve.set(true);
-		else
-			valve.set(false);
+		valve.set(valveTime >
+			valveTimer.get());
 			
 		//update isFinished state
 		if(compTimer.get() >
@@ -116,31 +113,42 @@ public class Cannon {
 		}
 	}
 	
+	//TODO should this be allowed to run multiple times when cannon is already armed?
 	/**
 	 * turns on air tank's
 	 * compressor for a set 
-	 * amount of time.
+	 * amount of time, if the
+	 * cannon is not already
+	 * in the process of
+	 * being armed.
 	 */
 	public void arm(
 		//Time compressor will run
 		double compTime) {
-		this.compTime =
-			compTime;
-		compTimer.reset();
-		hasPressure = true;
-		isFinished = false;
+		if(!hasPressure) {
+			this.compTime =
+				compTime;
+			compTimer.reset();
+			hasPressure = true;
+			isFinished = false;
+		}
 	}
 	
 	/**
 	 * sets cannon to a
-	 * disArmed state
+	 * disArmed state and
+	 * stops compressor if
+	 * running.
 	 */
 	public void disArm() {
 		fire(2.0);
+		this.compTime = 0.0;
 		isArmed = false;
 		hasPressure = false;
+		isFinished = true;
 	}
 	
+	//TODO prevent firing unless hasPressure or isArmed?
 	/**
 	 * open air tank to cannon
 	 * barrel for given amount
@@ -158,6 +166,15 @@ public class Cannon {
 	
 	public void fire() {
 		this.fire(DEFAULT_FIRE);
+	}
+	
+	/**
+	 * Get number of times cannon
+	 * was fired since it was
+	 * considered armed.
+	 */
+	public int getNumFired() {
+		return numFired;
 	}
 	
 	/**
