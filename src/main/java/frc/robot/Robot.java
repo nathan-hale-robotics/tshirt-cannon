@@ -79,6 +79,14 @@ public class Robot extends TimedRobot {
   		getRawButtonPressed(2)) {
   		autoArm = !autoArm;
   	}
+  	//Fire cannon when armed
+  	if(driveStick.
+  			getRawButtonPressed(
+  			BUTTON_TRIGGER) &&
+  			shirtCannon.isArmed()) {
+  			shirtCannon.fire();
+  	}
+  	
   	//if cannon was fired more
   	//than 4 times since armed
   	//fully disarm the cannon.
@@ -91,13 +99,6 @@ public class Robot extends TimedRobot {
   	if(autoArm) {
   		shirtCannon.arm(
 				PRESSURIZE_TIME);
-  	}
-  	//Fire cannon when armed
-  	if(driveStick.
-  			getRawButtonPressed(
-  			BUTTON_TRIGGER) &&
-  			shirtCannon.isArmed()) {
-  			shirtCannon.fire();
   	}
   }
 }
