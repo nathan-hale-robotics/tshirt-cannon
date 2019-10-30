@@ -17,9 +17,9 @@ public class MecanumDrive {
   }
 
   public void move(double speed, double strafe, double turn) {
-    frontLeft.set(speed - strafe);
-    frontRight.set(speed + strafe);
-    backLeft.set(speed + strafe);
-    backRight.set(speed - strafe);
+    frontLeft.set(speed - strafe - turn);
+    frontRight.set(speed + strafe + turn);
+    backLeft.set(speed + strafe - turn);
+    backRight.set(speed - strafe + turn);
   }
 }
