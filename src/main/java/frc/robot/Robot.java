@@ -61,7 +61,7 @@ public class Robot extends TimedRobot {
   public void control() {
 	  double xAxis = joystick.getXAxis();
 	  double yAxis = joystick.getYAxis();
-	  double speed = xAxis - yAxis
+	  double speed = xAxis - yAxis;
 	  motor1.set(speed);
 	  motor2.set(speed);
 	  motor3.set(speed);
@@ -78,8 +78,8 @@ public class Robot extends TimedRobot {
 	  }else {
 		  motorHeight.set(0);
 	  }
-	  
   }
+  public void 
  
   
   
