@@ -22,7 +22,7 @@ public class MecanumDrive {
   }
 
   /**
-   * Ajust rotation velocity and directional 
+   * Adjust rotation velocity and directional 
    * velocity. Expected input range: -1 to 1.
    * @param forward forward velocity
    * @param strafe rightward velocity
@@ -33,11 +33,11 @@ public class MecanumDrive {
     //This ensures the absolute value sum of all
     //velocities is 1 or under.
     double forwardR = forward/(1 +
-      abs(strafe) + abs(turn));
+      Math.abs(strafe) + Math.abs(turn));
     double strafeR = strafe/(1 +
-      abs(forward) + abs(turn));
+      Math.abs(forward) + Math.abs(turn));
     double turnR = turn/(1 +
-      abs(strafe) + abs(forward));
+      Math.abs(strafe) + Math.abs(forward));
     
     frontLeft.set(forwardR + strafeR + turnR);
     frontRight.set(forwardR - strafeR - turnR);
