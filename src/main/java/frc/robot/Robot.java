@@ -10,16 +10,20 @@ public class Robot extends TimedRobot {
   private Spark compressor;
   private boolean runningCompressor = false;
   private DigitalOutput valve;
+  private MecanumDrive driveBase;
 
   @Override
   public void robotInit() {
     joystick = new Joystick(0);
     compressor = new Spark(0);
     valve = new DigitalOutput(1);
+    
+    driveBase = new MecanumDrive(1, 2, 3, 4);
   }
 
   @Override
   public void teleopPeriodic() {
+    //Cannon code
     if (runningCompressor) {
       compressor.set(1);
     } else {
@@ -33,5 +37,9 @@ public class Robot extends TimedRobot {
     } else {
       valve.set(false);
     }
+    
+    //Drive-base code
+    driveBase.speed(joystick.getY(), 
+      joystick.getX(), joystick.getZ());
   }
 }

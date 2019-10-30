@@ -7,12 +7,15 @@ import edu.wpi.first.wpilibj.Spark;
  * wheel drivetrain.
  */
 public class MecanumDrive {
+  //Drive base motor interfaces
+  private final Spark frontLeft;
+  private final Spark frontRight;
+  private final Spark backLeft;
+  private final Spark backRight;
 
-  private Spark frontLeft;
-  private Spark frontRight;
-  private Spark backLeft;
-  private Spark backRight;
-
+  /**
+   * Initialize motor interfaces
+   */
   public MecanumDrive(int frontLeft, 
     int frontRight, int backLeft, int backRight) {
     this.frontLeft = new Spark(frontLeft);
