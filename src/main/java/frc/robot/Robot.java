@@ -8,6 +8,14 @@ import edu.wpi.first.wpilibj.TimedRobot;
 public class Robot extends TimedRobot {
   private Joystick joystick;
   private Spark compressor;
+  //these four motors are for the wheels
+  private Spark motor1;
+  private Spark motor2;
+  private Spark motor3;
+  private Spark motor4;
+  // motorHeight is for the motor that controls the angle of the cannon
+  private Spark motorHeight;
+  
   private boolean runningCompressor = false;
   private DigitalOutput valve;
 
@@ -17,8 +25,16 @@ public class Robot extends TimedRobot {
     joystick = new Joystick(0);
     // sets the pin 0 to be a Spark (motor)
     compressor = new Spark(0);
+    
+    motor1 = new Spark(1);//M1----M2
+    motor2 = new Spark(2);//|   ^  |
+    motor3 = new Spark(3);//|   |  |
+    motor4 = new Spark(4);//M3----M4
+    
+    motorHeight = new Spark(5);
     // sets the pin 1 to be a DigitalOutput (toggle output)
     valve = new DigitalOutput(1);
+    
   }
 
   @Override
@@ -40,5 +56,32 @@ public class Robot extends TimedRobot {
     } else {
       valve.set(false);
     }
+    
   }
+  public void control() {
+	  double xAxis = joystick.getXAxis();
+	  double yAxis = joystick.getYAxis();
+	  double speed = xAxis - yAxis
+	  motor1.set(speed);
+	  motor2.set(speed);
+	  motor3.set(speed);
+      motor4.set(speed);
+  }
+  public void controlAngle() {
+	  if (joystick.getRawButton(7)) {
+		  motorHeight.set(1);
+	  }else {
+		  motorHeight.set(0);
+	  }
+	  if (joystick.getRawButton(8)) {
+		  motorHeight.set(-1);
+	  }else {
+		  motorHeight.set(0);
+	  }
+	  
+  }
+ 
+  
+  
+  
 }
