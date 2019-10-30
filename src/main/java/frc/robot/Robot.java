@@ -59,20 +59,28 @@ public class Robot extends TimedRobot {
     
   }
   public void control() {
+	  //because we are using the joystick
+	  //by using x and y values can made it possible to slowly
+	  //accelerate or set at different speed
+	 
 	  double xAxis = joystick.getXAxis();
 	  double yAxis = joystick.getYAxis();
 	  double speed = xAxis - yAxis;
+	  
 	  motor1.set(speed);
-	  motor2.set(speed);
+	  motor2.set(-speed);
 	  motor3.set(speed);
-      motor4.set(speed);
+      motor4.set(-speed);
   }
   public void controlAngle() {
+	 //uses two different buttons to control
+	  //will increase the angle once it is pressed
 	  if (joystick.getRawButton(7)) {
 		  motorHeight.set(1);
 	  }else {
 		  motorHeight.set(0);
 	  }
+	  //decrease
 	  if (joystick.getRawButton(8)) {
 		  motorHeight.set(-1);
 	  }else {
