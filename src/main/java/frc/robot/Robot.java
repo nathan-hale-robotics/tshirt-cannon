@@ -62,9 +62,9 @@ public class Robot extends TimedRobot {
   }
   public void operate(){
     double r = Math.hypot(joystick.getX(), joystick.getY());//the speed 
-    double angle = joystick.getZ();
-    double vertical =  joystick.getY();
-    double horizontal = joystick.getX();
+    double angle = joystick.getZ(); //rotation
+    double vertical =  joystick.getY(); //foward&backward
+    double horizontal = joystick.getX(); // move left&right
     //double robotAngle = Math.atan2(joystick.getY(), joystick.getX() + Math.PI/4); 
     //double rightX = joystick.getX();
    
