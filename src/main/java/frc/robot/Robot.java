@@ -1,5 +1,7 @@
 package frc.robot;
 
+
+
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Spark;
@@ -16,7 +18,7 @@ public class Robot extends TimedRobot {
   Spark rearLeftMotor = new Spark(2);//|   ^  |
   Spark frontRightMotor = new Spark(3);//|   |  |
   Spark rearRightMotor = new Spark(4);//M3----M4
-  // motorHeight is for the motor that controls the angle of the cannon
+  
   
   
   // motorHeight is for the motor that controls the angle of the cannon
@@ -44,28 +46,27 @@ public class Robot extends TimedRobot {
     // can set the value to 0.5, if want to run at half speed
     if (runningCompressor) {
       compressor.set(1);
-    } else {
+      } else {
       compressor.set(0);
     }
     // will toggle the compressor if the user presses a button
     if (joystick.getRawButtonPressed(1)) {
       runningCompressor = !runningCompressor;
-    }
+      }
     // will open the valve as long as the trigger is pressed
     if (joystick.getRawButton(0)) {
       valve.set(true);
-    } else {
+      } else {
       valve.set(false);
     }
-    
-    
+       
   }
   public void operate(){
     double r = Math.hypot(joystick.getX(), joystick.getY());//the speed 
     double angle = joystick.getZ(); //rotation
     double vertical =  joystick.getY(); //foward&backward
     double horizontal = joystick.getX(); // move left&right
-    //double robotAngle = Math.atan2(joystick.getY(), joystick.getX() + Math.PI/4); 
+    //double robotAngle = Math.atan2(joystick.getY(), joystick.getX() - Math.PI/4); 
     //double rightX = joystick.getX();
    
     double v1 = r *(vertical + horizontal + angle); //vertical + horizontal movements
@@ -84,9 +85,6 @@ public class Robot extends TimedRobot {
     rearRightMotor.set(v4);
 
   }
-  
-  
-  
 
   public void controlAngle() {
 	 //uses two different buttons to control
