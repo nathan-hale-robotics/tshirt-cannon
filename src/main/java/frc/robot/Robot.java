@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.RobotDrive;
+
 
 
 
@@ -12,13 +12,15 @@ public class Robot extends TimedRobot {
   private Joystick joystick;
   private Spark compressor;
   //these four motors are for the wheels
-  Spark motor1 = new Spark(1);//M1----M3
-  Spark motor2 = new Spark(2);//|   ^  |
-  Spark motor3 = new Spark(3);//|   |  |
-  Spark motor4 = new Spark(4);//M2----M4
+  Spark frontLeftMotor = new Spark(1);//M1----M2
+  Spark rearLeftMotor = new Spark(2);//|   ^  |
+  Spark frontRightMotor = new Spark(3);//|   |  |
+  Spark rearRightMotor = new Spark(4);//M3----M4
   // motorHeight is for the motor that controls the angle of the cannon
-  Spark motorHeight = new Spark(5);
   
+  
+  // motorHeight is for the motor that controls the angle of the cannon
+  Spark motorHeight;
   private boolean runningCompressor = false;
   private DigitalOutput valve;
 
@@ -33,6 +35,7 @@ public class Robot extends TimedRobot {
     // sets the pin 1 to be a DigitalOutput (toggle output)
     valve = new DigitalOutput(1);
     
+   
   }
 
   @Override
@@ -54,10 +57,28 @@ public class Robot extends TimedRobot {
     } else {
       valve.set(false);
     }
-    m_robotDrive.mecanumDrive_Cartesian(joystick.getX(), joystick.getY(), joystick.getZ());
+    
     
   }
+  public void operate(){
+    double r = Math.hypot(joystick.getX(), joystick.getY());//the speed 
+    double robotAngle = Math.atan2(joystick.getY(), joystick.getX() + Math.PI/4); 
+    double rightX = joystick.getX();
+    double v1 = r * Math.cos(robotAngle) + rightX; //vertical + horizontal movements
+    double v2 = r * Math.sin(robotAngle) - rightX;
+    double v3 = r * Math.sin(robotAngle) + rightX;
+    double v4 = r * Math.cos(robotAngle) - rightX;
+    
+    frontLeftMotor.set(v1);
+    frontRightMotor.set(v2);
+    rearLeftMotor.set(v3);
+    rearRightMotor.set(v4);
+
+  }
   
+  
+  
+
   public void controlAngle() {
 	 //uses two different buttons to control
 	  //will increase the angle once it is pressed
