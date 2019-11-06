@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.RobotDrive;
 
+
+
 public class Robot extends TimedRobot {
   private Joystick joystick;
   private Spark compressor;
@@ -71,7 +73,7 @@ public class Robot extends TimedRobot {
 		  motorHeight.set(0);
 	  }
   }
-  public void 
+  
  
   
   
