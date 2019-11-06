@@ -4,17 +4,18 @@ import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.RobotDrive;
 
 public class Robot extends TimedRobot {
   private Joystick joystick;
   private Spark compressor;
   //these four motors are for the wheels
-  private Spark motor1;
-  private Spark motor2;
-  private Spark motor3;
-  private Spark motor4;
+  Spark motor1 = new Spark(1);//M1----M3
+  Spark motor2 = new Spark(2);//|   ^  |
+  Spark motor3 = new Spark(3);//|   |  |
+  Spark motor4 = new Spark(4);//M2----M4
   // motorHeight is for the motor that controls the angle of the cannon
-  private Spark motorHeight;
+  Spark motorHeight = new Spark(5);
   
   private boolean runningCompressor = false;
   private DigitalOutput valve;
@@ -25,11 +26,6 @@ public class Robot extends TimedRobot {
     joystick = new Joystick(0);
     // sets the pin 0 to be a Spark (motor)
     compressor = new Spark(0);
-    
-    motor1 = new Spark(1);//M1----M2
-    motor2 = new Spark(2);//|   ^  |
-    motor3 = new Spark(3);//|   |  |
-    motor4 = new Spark(4);//M3----M4
     
     motorHeight = new Spark(5);
     // sets the pin 1 to be a DigitalOutput (toggle output)
@@ -56,22 +52,10 @@ public class Robot extends TimedRobot {
     } else {
       valve.set(false);
     }
+    m_robotDrive.mecanumDrive_Cartesian(joystick.getX(), joystick.getY(), joystick.getZ());
     
   }
-  public void control() {
-	  //because we are using the joystick
-	  //by using x and y values can made it possible to slowly
-	  //accelerate or set at different speed
-	 
-	  double xAxis = joystick.getXAxis();
-	  double yAxis = joystick.getYAxis();
-	  double speed = xAxis - yAxis;
-	  
-	  motor1.set(speed);
-	  motor2.set(-speed);
-	  motor3.set(speed);
-      motor4.set(-speed);
-  }
+  
   public void controlAngle() {
 	 //uses two different buttons to control
 	  //will increase the angle once it is pressed
