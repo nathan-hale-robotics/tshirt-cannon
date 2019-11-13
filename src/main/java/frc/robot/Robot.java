@@ -29,9 +29,10 @@ public class Robot extends TimedRobot {
     } else {
       compressor.set(0);
     }
-    if (joystick.getRawButtonPressed(1)) {
+    if (joystick.getRawButtonPressed(0)) {
       runningCompressor = !runningCompressor;
     }
+
     if (joystick.getRawButton(0)) {
       valve.set(true);
     } else {
