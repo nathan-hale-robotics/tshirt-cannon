@@ -33,6 +33,8 @@ public class MecanumDrive {
    */
   public void speed(double forward, double strafe, 
     double turn) {
+
+    
     //This ensures the absolute value sum of all
     //velocities is 1 or under.
     double forwardR = forward/(1 +
@@ -42,9 +44,9 @@ public class MecanumDrive {
     double turnR = turn/(1 +
       Math.abs(strafe) + Math.abs(forward));
     
-    frontLeft.set(forwardR + strafeR + turnR);
+    frontLeft.set(-(forwardR + strafeR + turnR));
     frontRight.set(forwardR - strafeR - turnR);
-    backLeft.set(forwardR - strafeR + turnR);
+    backLeft.set(-(forwardR - strafeR + turnR));
     backRight.set(forwardR + strafeR - turnR);
   }
 }

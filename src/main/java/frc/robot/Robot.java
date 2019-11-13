@@ -15,10 +15,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     joystick = new Joystick(0);
-    compressor = new Spark(0);
+    compressor = new Spark(4);
     valve = new DigitalOutput(1);
     
-    driveBase = new MecanumDrive(1, 2, 3, 4);
+    driveBase = new MecanumDrive(0, 1, 2, 3);
   }
 
   @Override
@@ -39,7 +39,7 @@ public class Robot extends TimedRobot {
     }
     
     //Drive-base code
-    driveBase.speed(joystick.getY(), 
-      joystick.getX(), joystick.getZ());
+    driveBase.speed(-joystick.getY(), 
+      -joystick.getX(), -joystick.getZ() * .05);
   }
 }
