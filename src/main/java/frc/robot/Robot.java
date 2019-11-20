@@ -17,7 +17,6 @@ public class Robot extends TimedRobot {
     joystick = new Joystick(0);
     compressor = new Spark(4);
     valve = new DigitalOutput(1);
-    
     driveBase = new MecanumDrive(0, 1, 2, 3);
   }
 
@@ -38,9 +37,9 @@ public class Robot extends TimedRobot {
     } else {
       valve.set(false);
     }
-    
+
     //Drive-base code
-    driveBase.speed(-joystick.getY(), 
+    driveBase.speed(-joystick.getY(),
       -joystick.getX(), -joystick.getZ() * .05);
   }
 }

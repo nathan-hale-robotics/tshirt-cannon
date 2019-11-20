@@ -16,8 +16,8 @@ public class MecanumDrive {
   /**
    * Initialize motor interfaces
    */
-  public MecanumDrive(int frontLeft, 
-    int frontRight, int backLeft, int backRight) {
+  public MecanumDrive(int frontLeft,
+                      int frontRight, int backLeft, int backRight) {
     this.frontLeft = new Spark(frontLeft);
     this.frontRight = new Spark(frontRight);
     this.backLeft = new Spark(backLeft);
@@ -25,25 +25,26 @@ public class MecanumDrive {
   }
 
   /**
-   * Adjust rotation velocity and directional 
+   * Adjust rotation velocity and directional
    * velocity. Expected input range: -1 to 1.
+   *
    * @param forward forward velocity
-   * @param strafe rightward velocity
-   * @param turn clockwise rotation velocity
+   * @param strafe  rightward velocity
+   * @param turn    clockwise rotation velocity
    */
-  public void speed(double forward, double strafe, 
-    double turn) {
+  public void speed(double forward, double strafe,
+                    double turn) {
 
-    
+
     //This ensures the absolute value sum of all
     //velocities is 1 or under.
-    double forwardR = forward/(1 +
+    double forwardR = forward / (1 +
       Math.abs(strafe) + Math.abs(turn));
-    double strafeR = strafe/(1 +
+    double strafeR = strafe / (1 +
       Math.abs(forward) + Math.abs(turn));
-    double turnR = turn/(1 +
+    double turnR = turn / (1 +
       Math.abs(strafe) + Math.abs(forward));
-    
+
     frontLeft.set(-(forwardR + strafeR + turnR));
     frontRight.set(forwardR - strafeR - turnR);
     backLeft.set(-(forwardR - strafeR + turnR));
