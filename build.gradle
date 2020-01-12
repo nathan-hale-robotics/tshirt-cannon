@@ -64,9 +64,18 @@ jar {
   manifest GradleRIOPlugin.javaManifest(ROBOT_MAIN_CLASS)
 }
 
-
 spotless {
   java {
+    target fileTree('.') {
+      include '**/*.java'
+      exclude 'build/**'
+    }
+
+    trimTrailingWhitespace()
+    removeUnusedImports()
+
     googleJavaFormat()
   }
 }
+
+jar.dependsOn spotlessJavaCheck
