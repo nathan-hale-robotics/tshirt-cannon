@@ -22,7 +22,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    //Cannon code
+    // Cannon code
     if (runningCompressor) {
       compressor.set(1);
     } else {
@@ -38,8 +38,7 @@ public class Robot extends TimedRobot {
       valve.set(false);
     }
 
-    //Drive-base code
-    driveBase.speed(-joystick.getY(),
-      -joystick.getX(), -joystick.getZ() * .05);
+    // Drive-base code
+    driveBase.speed(-joystick.getY(), -joystick.getX(), -joystick.getZ() * .05);
   }
 }
