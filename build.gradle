@@ -3,6 +3,7 @@ import edu.wpi.first.gradlerio.GradleRIOPlugin
 plugins {
   id "java"
   id "edu.wpi.first.GradleRIO" version "2020.1.2"
+  id "com.diffplug.gradle.spotless" version "3.27.0"
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -61,4 +62,11 @@ jar {
     }
   }
   manifest GradleRIOPlugin.javaManifest(ROBOT_MAIN_CLASS)
+}
+
+
+spotless {
+  java {
+    googleJavaFormat()
+  }
 }
